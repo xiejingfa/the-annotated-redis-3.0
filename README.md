@@ -28,7 +28,8 @@ Enjoy Redis！
 | ``dict.c`` 、 ``dict.h``      | 字典dict数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51018337)。     |
 | ``ziplist.c`` 、 ``ziplist.h``      | 压缩列表ziplist数据结构实现，ziplist是为了节省列表空间而设计一种特殊编码方式，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51072326)。     |
 | ``zipmap.c`` 、 ``zipmap.h``      | 压缩字典zipmap数据结构实现，zipmap是为了节省哈希表空间而设计一种特殊编码方式，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51111230)。     |
-| ``intset.c`` 、 ``intset.h``      | 整数集合intset数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51124203)。     |
+| ``intset.c`` 、 ``intset.h``      | 整数集合intset数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51124203)。     | 
+| ``object.c``      | Redis对象redisObject的实现，函数声明在redis.h文件中，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51140041)。     |
 
 
 
