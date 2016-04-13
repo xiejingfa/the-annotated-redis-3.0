@@ -25,6 +25,10 @@ Enjoy Redis！
 | ------------- | ------------- | 
 | ``adlist.c`` 、 ``adlist.h``      | 双向链表list数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/50938028)。 |
 | ``sds.c`` 、 ``sds.h``      | 字符串sds数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/50972592)。     |
+| ``dict.c`` 、 ``dict.h``      | 字典dict数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51018337)。     |
+
+
+
 
 
 
