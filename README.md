@@ -26,6 +26,7 @@ Enjoy Redis！
 | ``adlist.c`` 、 ``adlist.h``      | 双向链表list数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/50938028)。 |
 | ``sds.c`` 、 ``sds.h``      | 字符串sds数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/50972592)。     |
 | ``dict.c`` 、 ``dict.h``      | 字典dict数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51018337)。     |
+| ``ziplist.c`` 、 ``ziplist.h``      | 压缩列表ziplist数据结构实现，ziplist是为了节省列表空间而设计一种特殊编码方式，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51072326)。     |
 
 
 
