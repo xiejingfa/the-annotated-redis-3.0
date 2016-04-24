@@ -21,16 +21,17 @@ Enjoy Redis！
 附：各源码文件的功能和相应的文章链接
 ------------------------------------------
 
-| 文件           | 功能           | 
+| 文件           | 链接           | 
 | ------------- | ------------- | 
-| ``adlist.c`` 、 ``adlist.h``      | 双向链表list数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/50938028)。 |
-| ``sds.c`` 、 ``sds.h``      | 字符串sds数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/50972592)。     |
-| ``dict.c`` 、 ``dict.h``      | 字典dict数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51018337)。     |
-| ``ziplist.c`` 、 ``ziplist.h``      | 压缩列表ziplist数据结构实现，ziplist是为了节省列表空间而设计一种特殊编码方式，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51072326)。     |
-| ``zipmap.c`` 、 ``zipmap.h``      | 压缩字典zipmap数据结构实现，zipmap是为了节省哈希表空间而设计一种特殊编码方式，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51111230)。     |
-| ``intset.c`` 、 ``intset.h``      | 整数集合intset数据结构实现，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51124203)。     | 
-| ``object.c``      | Redis对象redisObject的实现，函数声明在redis.h文件中，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51140041)。     |
-| ``t_list.c``      | Redis数据类型List的实现，函数声明在redis.h文件中，[文章链接](http://blog.csdn.net/xiejingfa/article/details/51166709)。     |
+| ``adlist.c`` 、 ``adlist.h``      | 双向链表list数据结构实现，[【Redis源码剖析】 - Redis内置数据结构之双向链表list](http://blog.csdn.net/xiejingfa/article/details/50938028)。 |
+| ``sds.c`` 、 ``sds.h``      | 字符串sds数据结构实现，[ 【Redis源码剖析】 - Redis内置数据结构之字符串sds](http://blog.csdn.net/xiejingfa/article/details/50972592)。     |
+| ``dict.c`` 、 ``dict.h``      | 字典dict数据结构实现，[【Redis源码剖析】 - Redis内置数据结构之字典dict](http://blog.csdn.net/xiejingfa/article/details/51018337)。     |
+| ``ziplist.c`` 、 ``ziplist.h``      | 压缩列表ziplist数据结构实现，ziplist是为了节省列表空间而设计一种特殊编码方式，[【Redis源码剖析】 - Redis内置数据结构之压缩列表ziplist](http://blog.csdn.net/xiejingfa/article/details/51072326)。     |
+| ``zipmap.c`` 、 ``zipmap.h``      | 压缩字典zipmap数据结构实现，zipmap是为了节省哈希表空间而设计一种特殊编码方式，[ 【Redis源码剖析】 - Redis内置数据结构值压缩字典zipmap](http://blog.csdn.net/xiejingfa/article/details/51111230)。     |
+| ``intset.c`` 、 ``intset.h``      | 整数集合intset数据结构实现，[【Redis源码剖析】 - Reids内置数据结构之整数集合intset](http://blog.csdn.net/xiejingfa/article/details/51124203)。     | 
+| ``object.c``      | Redis对象redisObject的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之redisObject](http://blog.csdn.net/xiejingfa/article/details/51140041)。     |
+| ``t_list.c``      | Redis数据类型List的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之列表List](http://blog.csdn.net/xiejingfa/article/details/51166709)。     |
+| ``t_zset.c``      | Redis数据类型zset的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之有序集合zset](http://blog.csdn.net/xiejingfa/article/details/51231967)。     |
 
 
 
