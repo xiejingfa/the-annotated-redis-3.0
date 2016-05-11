@@ -31,6 +31,7 @@ Enjoy Redis！
 | ``intset.c`` 、 ``intset.h``      | 整数集合intset数据结构实现，[【Redis源码剖析】 - Reids内置数据结构之整数集合intset](http://blog.csdn.net/xiejingfa/article/details/51124203)。     | 
 | ``object.c``      | Redis对象redisObject的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之redisObject](http://blog.csdn.net/xiejingfa/article/details/51140041)。     |
 | ``t_list.c``      | Redis数据类型List的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之列表List](http://blog.csdn.net/xiejingfa/article/details/51166709)。     |
+| ``t_hash.c``      | Redis数据类型hash的实现，函数声明在redis.h文件中。     |
 | ``t_zset.c``      | Redis数据类型zset的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之有序集合zset](http://blog.csdn.net/xiejingfa/article/details/51231967)。     |
 | ``multi.c``      | Redis事务的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis之事务的实现原理](http://blog.csdn.net/xiejingfa/article/details/51262268)。     |
 | ``db.c``      | Redis数据库，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis之数据库redisDb](http://blog.csdn.net/xiejingfa/article/details/51321282)。     |
