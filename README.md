@@ -30,6 +30,7 @@ Enjoy Redis！
 | ``zipmap.c`` 、 ``zipmap.h``      | 压缩字典zipmap数据结构实现，zipmap是为了节省哈希表空间而设计一种特殊编码方式，[ 【Redis源码剖析】 - Redis内置数据结构值压缩字典zipmap](http://blog.csdn.net/xiejingfa/article/details/51111230)。     |
 | ``intset.c`` 、 ``intset.h``      | 整数集合intset数据结构实现，[【Redis源码剖析】 - Reids内置数据结构之整数集合intset](http://blog.csdn.net/xiejingfa/article/details/51124203)。     | 
 | ``object.c``      | Redis对象redisObject的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之redisObject](http://blog.csdn.net/xiejingfa/article/details/51140041)。     |
+| ``t_string.c``      | Redis数据类型string的实现，函数声明在redis.h文件中。     |
 | ``t_list.c``      | Redis数据类型List的实现，函数声明在redis.h文件中，[【Redis源码剖析】 - Redis数据类型之列表List](http://blog.csdn.net/xiejingfa/article/details/51166709)。     |
 | ``t_hash.c``      | Redis数据类型hash的实现，函数声明在redis.h文件中。     |
 | ``t_set.c``      | Redis数据类型set的实现，函数声明在redis.h文件中。     |
