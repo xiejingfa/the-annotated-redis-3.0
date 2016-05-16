@@ -58,7 +58,7 @@ static int checkStringLength(redisClient *c, long long size) {
  *
  * If ok_reply is NULL "+OK" is used.
  * If abort_reply is NULL, "$-1" is used. */
- /* setGenericCommand函数实现了SET操作的不同版本：SET、SETEX、PSETEX和SETNX
+/*  setGenericCommand函数实现了SET操作的不同版本：SET、SETEX、PSETEX和SETNX
 
     参数flag用来指定该函数的操作类型（REDIS_SET_NX or REDIS_SET_XX or REDIS_SET_NO_FLAGS）。
 
@@ -67,7 +67,7 @@ static int checkStringLength(redisClient *c, long long size) {
     参数ok_reply和abort_reply指定了命令的回复内容。
     如果ok_reply为NULL，则"+OK"被返回。
     如果abort_reply为NULL，则"$-1"被返回。
- */
+*/
 
 #define REDIS_SET_NO_FLAGS 0
 #define REDIS_SET_NX (1<<0)     /* Set if key not exists. */
@@ -136,14 +136,14 @@ void setCommand(redisClient *c) {
         // 获取EX选项
         else if ((a[0] == 'e' || a[0] == 'E') &&
                    (a[1] == 'x' || a[1] == 'X') && a[2] == '\0' && next) {
-            unit = UNIT_SECONDS;    // 以秒为单位
+            unit = UNIT_SECONDS;
             expire = next;
             j++;
         } 
         // 获取PX选项
         else if ((a[0] == 'p' || a[0] == 'P') &&
                    (a[1] == 'x' || a[1] == 'X') && a[2] == '\0' && next) {
-            unit = UNIT_MILLISECONDS;   // 以毫秒为单位
+            unit = UNIT_MILLISECONDS;
             expire = next;
             j++;
         } 
@@ -181,7 +181,7 @@ void psetexCommand(redisClient *c) {
 int getGenericCommand(redisClient *c) {
     robj *o;
 
-    // 取出key对应的字符串对象，如果该key不存在则返回NULL
+    // 取出key对应的字符串对象，如果该key不存在则o被设置为NULL
     if ((o = lookupKeyReadOrReply(c,c->argv[1],shared.nullbulk)) == NULL)
         return REDIS_OK;
 
@@ -189,8 +189,9 @@ int getGenericCommand(redisClient *c) {
     if (o->type != REDIS_STRING) {
         addReply(c,shared.wrongtypeerr);
         return REDIS_ERR;
-    } else {
-        // 添加到回复消息中
+    } 
+    // 添加到回复消息中
+    else {
         addReplyBulk(c,o);
         return REDIS_OK;
     }
@@ -232,7 +233,7 @@ void setrangeCommand(redisClient *c) {
 
     // 取出指定key所关联的字符串对象
     o = lookupKeyWrite(c->db,c->argv[1]);
-    // 如果目标字符串对象不存在，创建一个
+    // 如果目标字符串对象不存在，执行下面代码
     if (o == NULL) {
         /* Return 0 when setting nothing on a non-existing string */
         // 如果给定新值为空，直接返回
@@ -260,9 +261,9 @@ void setrangeCommand(redisClient *c) {
             return;
 
         /* Return existing string length when setting nothing */
-        // 获取源对象的长度
+        // 获取原对象的长度
         olen = stringObjectLen(o);
-        // 如果给定新值为空，直接返回源对象长度
+        // 如果给定新值为空，直接返回原对象长度
         if (sdslen(value) == 0) {
             addReplyLongLong(c,olen);
             return;
@@ -307,7 +308,7 @@ void getrangeCommand(redisClient *c) {
     if ((o = lookupKeyReadOrReply(c,c->argv[1],shared.emptybulk)) == NULL ||
         checkType(c,o,REDIS_STRING)) return;
 
-    // 如果为整型编码，先转换为字符串
+    // 如果为整型编码，先转换为字符串，方便操作
     if (o->encoding == REDIS_ENCODING_INT) {
         str = llbuf;
         strlen = ll2string(llbuf,sizeof(llbuf),(long)o->ptr);
@@ -327,7 +328,7 @@ void getrangeCommand(redisClient *c) {
 
     /* Precondition: end >= 0 && end < strlen, so the only condition where
      * nothing can be returned is: start > end. */
-    // 指定的范围为空，返回空消息
+    // 指定的范围左边界大于右边界或该范围为空，返回空消息
     if (start > end || strlen == 0) {
         addReply(c,shared.emptybulk);
     } 
@@ -346,6 +347,7 @@ void mgetCommand(redisClient *c) {
     for (j = 1; j < c->argc; j++) {
         // 查找当前key所关联的字符串对象
         robj *o = lookupKeyRead(c->db,c->argv[j]);
+        // 若该对象为空，返回空回复
         if (o == NULL) {
             addReply(c,shared.nullbulk);
         } else {
@@ -379,7 +381,7 @@ void msetGenericCommand(redisClient *c, int nx) {
                 busykeys++;
             }
         }
-        // 只要输入key中有一个已经存在于数据库db中，直接返回0
+        // 在设置NX参数的情况下，只要输入key中有一个已经存在于数据库db中，直接返回0
         if (busykeys) {
             addReply(c, shared.czero);
             return;
@@ -429,13 +431,23 @@ void incrDecrCommand(redisClient *c, long long incr) {
     }
     // 真正执行加法操作
     value += incr;
-    // 创建一个新对象
-    new = createStringObjectFromLongLong(value);
-    // 如果原字符串对象已经存在则替换之，否则将新值添加到数据库db中
-    if (o)
-        dbOverwrite(c->db,c->argv[1],new);
-    else
-        dbAdd(c->db,c->argv[1],new);
+
+    if (o && o->refcount == 1 && o->encoding == REDIS_ENCODING_INT &&
+        (value < 0 || value >= REDIS_SHARED_INTEGERS) &&
+        value >= LONG_MIN && value <= LONG_MAX)
+    {
+        new = o;
+        o->ptr = (void*)((long)value);
+    } else {
+        // 创建一个新对象
+        new = createStringObjectFromLongLong(value);
+        // 如果原字符串对象已经存在则替换之，否则将新值添加到数据库db中
+        if (o) {
+            dbOverwrite(c->db,c->argv[1],new);
+        } else {
+            dbAdd(c->db,c->argv[1],new);
+        }
+    }
     signalModifiedKey(c->db,c->argv[1]);
     notifyKeyspaceEvent(REDIS_NOTIFY_STRING,"incrby",c->argv[1],c->db->id);
     server.dirty++;
@@ -530,12 +542,11 @@ void appendCommand(redisClient *c) {
     // 如果目标字符串对象存在，则执行下面代码
     else {
         /* Key exists, check type */
-        // 类型检查
         if (checkType(c,o,REDIS_STRING))
             return;
 
         /* "append" is an argument, so always an sds */
-        // 先判断如果执行append操作后，新字符串的长度是否会超过Redis的限制
+        // 先判断如果执行append操作后，检查新字符串的长度是否会超过Redis的限制
         append = c->argv[2];
         totlen = stringObjectLen(o)+sdslen(append->ptr);
         if (checkStringLength(c,totlen) != REDIS_OK)
