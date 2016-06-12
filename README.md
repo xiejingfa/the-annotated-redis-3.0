@@ -40,6 +40,7 @@ Enjoy Redis！
 | ``rio.c``、 ``rio.h``            | Redis对系统I/O操作的封装，[【Redis源码剖析】 - Redis IO操作之rio](http://blog.csdn.net/xiejingfa/article/details/51433696)。     |
 | ``crc64.c``、 ``crc64.h``、 ``crc16.h``            |  计算循环冗余校验(Cyclic Redundancy Check, CRC)。     |
 | ``rdb.c``、 ``rdb.h``            |  Redis持久化机制RDB的实现，[【Redis源码剖析】 - Redis持久化之RDB](http://blog.csdn.net/xiejingfa/article/details/51553370)   |
+| ``aof.c``           |  Redis持久化机制AOF的实现，[【Redis源码剖析】 - Redis持久化之AOF](http://blog.csdn.net/xiejingfa/article/details/51644390)   |
 
 
 
